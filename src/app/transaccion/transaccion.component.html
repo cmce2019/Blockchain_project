@@ -1,0 +1,39 @@
+<span class="border">
+<div class="container">
+    <h1 class="title is-4 is-info help">{{status}}</h1>
+  <form #nameForm="ngForm">
+    <div class="field">
+      <p>Cargar gas</p>
+      <label class="label">Direccion de la estacion de gas</label>
+      <p class="control">
+        <input [(ngModel)]="direccion"  class="input"  type="text" placeholder="Direccion de la estacion de gas"  name="direccion"  required  #nameChangeModel="ngModel">
+      </p>
+  
+      <label class="label">Cantidad de galones</label>
+      <p class="control">
+        <input [(ngModel)]="cantidadgalones"  class="input"  type="number" placeholder="Cantidad de galones"  name="cantidadgalones"  required  #nameChangeModel="ngModel">
+      </p>
+      
+  
+    
+      <div *ngIf="nameChangeModel.errors && (nameChangeModel.dirty || nameChangeModel.touched)"
+           class="help is-danger">
+          <p [hidden]="!nameChangeModel.errors.required">
+            This field is required
+          </p>
+      </div>
+    </div>
+    
+    <div class="field is-grouped">
+      <p class="control">
+        <button    [disabled]="!nameForm.valid"   (click)="transferirGas()" class="button is-primary">  Recargar </button>
+      </p>
+
+<p>
+  <button    (click)="obtenerSaldoV()" class="button is-primary">  Obtener saldo vehiculo </button>  <input class="input" type="number" value="{{saldoG}}" disabled>  </p> 
+ <p> <button    (click)="obtenerSaldoE()" class="button is-primary">  Obtener saldo estacion </button>  <input class="input" type="number" value="{{saldoB}}" disabled>  
+</p>
+    </div>
+  </form>
+  </div>
+</span>

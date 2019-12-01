@@ -1,0 +1,37 @@
+<div class="container">
+  <h1 class="title is-4 is-info help">{{status}}</h1>
+<form #nameForm="ngForm">
+  <div class="field">
+    <label class="label">Nombre</label>
+    <p class="control">
+      <input [(ngModel)]="nombre"  class="input"  type="text" placeholder="Nombre"  name="Nombre"  required  #nameChangeModel="ngModel">
+    </p>
+  
+  <label class="label">Apellido</label>
+    <p class="control">
+      <input [(ngModel)]="apellido"  class="input"  type="text" placeholder="Apellido"  name="Apellido"  required  #nameChangeModel="ngModel">
+    </p>
+  
+  
+  <label class="label">Edad</label>
+    <p class="control">
+      <input [(ngModel)]="edad"  class="input"  type="text" placeholder="Edad"  name="Edad"  required  #nameChangeModel="ngModel">
+    </p>
+  
+    <div *ngIf="nameChangeModel.errors && (nameChangeModel.dirty || nameChangeModel.touched)"
+         class="help is-danger">
+        <p [hidden]="!nameChangeModel.errors.required">
+          This field is required
+        </p>
+    </div>
+  </div>
+  
+  <div class="field is-grouped">
+    <p class="control">
+      <button    [disabled]="!nameForm.valid"   (click)="registrarInstructor()" class="button is-primary">  Registrar Instructor  </button>
+    <button     (click)="consultarInstructor()" class="button is-primary">  Consultar Instructor  </button>
+    
+    </p>
+  </div>
+</form>
+</div>

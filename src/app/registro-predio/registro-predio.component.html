@@ -1,0 +1,79 @@
+<div class="container" style="background-color:lightblue">
+  <h1 class="title is-4 is-info help">{{status}}</h1>
+<form #nameForm="ngForm">
+  <div class="field">
+    <p> Registro de predio</p>
+    <label class="label">Direccion de cuenta</label>
+    <p class="control">
+      <input [(ngModel)]="acc"  class="input"  type="text" placeholder="Direccion de cuenta"  name="nombre"  required  #nameChangeModel="ngModel">
+    </p>
+    <label class="label">Direccion fisica</label>
+    <p class="control">
+      <input [(ngModel)]="dirfisica"  class="input"  type="text" placeholder="Direccion fisica"  name="dirfisica"  required  #nameChangeModel="ngModel">
+    </p>
+    <label class="label">Numero de pisos</label>
+    <p class="control">
+      <input [(ngModel)]="numpisos"  class="input"  type="number" placeholder="Numero de pisos"  name="numpisos"  required  #nameChangeModel="ngModel">
+    </p>
+    <label class="label">Area</label>
+    <p class="control">
+      <input [(ngModel)]="area"  class="input"  type="number" placeholder="Area"  name="area"  required  #nameChangeModel="ngModel">
+    </p>
+  
+    <div *ngIf="nameChangeModel.errors && (nameChangeModel.dirty || nameChangeModel.touched)"
+         class="help is-danger">
+        <p [hidden]="!nameChangeModel.errors.required">
+          This field is required
+        </p>
+    </div>
+  </div>
+  
+  <div class="field is-grouped">
+    <p class="control">
+      <button    [disabled]="!nameForm.valid"   (click)="registrarPredio()" class="button is-primary">  Registrar predio</button>
+    </p>
+  </div>
+</form>
+</div>
+
+<div class="container" style="background-color:lightblue">
+  <h1 class="title is-4 is-info help">{{status}}</h1>
+<form #naeForm="ngForm">
+  <div class="field">
+
+    <label class="label">Registrar material</label>
+    <p class="control">
+      <input [(ngModel)]="nombrematerial"  class="input"  type="text" placeholder="Registrar material"  name="nombrematerial"  required  #nameChangeModel="ngModel">
+    </p>
+   
+  
+    <div *ngIf="nameChangeModel.errors && (nameChangeModel.dirty || nameChangeModel.touched)"
+         class="help is-danger">
+        <p [hidden]="!nameChangeModel.errors.required">
+          This field is required
+        </p>
+    </div>
+  </div>
+  
+  <div class="field is-grouped">
+    <p class="control">
+      <button    [disabled]="!naeForm.valid"   (click)="registrarMaterialPredio()" class="button is-primary">  Registrar material</button>
+    </p>
+    <p class="control">
+      <button    [disabled]="!naeForm.valid"   (click)="registrarPisoPredio()" class="button is-primary">  Registrar piso</button>
+    </p>
+
+
+
+    <label class="label">Direccion del predio</label>
+    <p>
+      <input [(ngModel)]="direccionA"  class="input"  type="text" placeholder="Direccion del predio"  name="direccionA">
+    </p>
+
+   <p> <button    (click)="obtenerPisos()" class="button is-primary">  Obtener numero de pisos </button>  <input class="input" type="number" value="{{pisosG}}" disabled>  </p> 
+   <p> <button    (click)="obtenerMateriales()" class="button is-primary">  Obtener numero de materiales </button>  <input class="input" type="number" value="{{materialesG}}" disabled>  </p> 
+   <p> <button    (click)="obtenerDueno()" class="button is-primary">  Obtener nombre del dueño del predio </button>  <input class="input" type="text" value="{{nombreG}}" disabled>  </p> 
+ 
+  </div>
+</form>
+</div>

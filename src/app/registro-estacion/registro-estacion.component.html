@@ -1,0 +1,37 @@
+<div class="container" style="background-color:lightblue">
+  <h1 class="title is-4 is-info help">{{status}}</h1>
+<form #nameForm="ngForm">
+  <div class="field">
+    <p> Registro de estacion</p>
+    <label class="label">Nombre</label>
+    <p class="control">
+      <input [(ngModel)]="nombre"  class="input"  type="text" placeholder="Nombre"  name="nombre"  required  #nameChangeModel="ngModel">
+    </p>
+
+    <label class="label">Tipo de gasolina</label>
+    <p class="control">
+      <input [(ngModel)]="nombregas"  class="input"  type="text" placeholder="Tipo de gaolina"  name="nombregas"  required  #nameChangeModel="ngModel">
+    </p>
+
+    <label class="label">Precio por galon</label>
+    <p class="control">
+      <input [(ngModel)]="precioxgalon"  class="input"  type="number" placeholder="Precio por galon"  name="precioxgalon"  required  #nameChangeModel="ngModel">
+    </p>
+    
+
+  
+    <div *ngIf="nameChangeModel.errors && (nameChangeModel.dirty || nameChangeModel.touched)"
+         class="help is-danger">
+        <p [hidden]="!nameChangeModel.errors.required">
+          This field is required
+        </p>
+    </div>
+  </div>
+  
+  <div class="field is-grouped">
+    <p class="control">
+      <button    [disabled]="!nameForm.valid"   (click)="registrarEstacion()" class="button is-primary">  Registrar estación </button>
+    </p>
+  </div>
+</form>
+</div>

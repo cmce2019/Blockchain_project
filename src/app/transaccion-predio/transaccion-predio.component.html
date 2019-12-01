@@ -1,0 +1,36 @@
+<div class="container" style="background-color:lightblue">
+  <h1 class="title is-4 is-info help">{{status}}</h1>
+<form #nameForm="ngForm">
+  <div class="field">
+    <p> Transaccion de un predio</p>
+    <label class="label">Direccion destino</label>
+    <p class="control">
+      <input [(ngModel)]="accdestino"  class="input"  type="text" placeholder="Direccion destino"  name="accdestino"  required  #nameChangeModel="ngModel">
+    </p>
+    <label class="label">Direccion del predio</label>
+    <p class="control">
+      <input [(ngModel)]="accpredio"  class="input"  type="text" placeholder="Direccion del predio"  name="accpredio"  required  #nameChangeModel="ngModel">
+    </p>
+    <label class="label">Fecha</label>
+    <p class="control">
+      <input [(ngModel)]="fecha"  class="input"  type="text" placeholder="Fecha"  name="fecha"  required  #nameChangeModel="ngModel">
+    </p>
+    
+
+  
+    <div *ngIf="nameChangeModel.errors && (nameChangeModel.dirty || nameChangeModel.touched)"
+         class="help is-danger">
+        <p [hidden]="!nameChangeModel.errors.required">
+          This field is required
+        </p>
+    </div>
+  </div>
+  
+  <div class="field is-grouped">
+    <p class="control">
+      <button    [disabled]="!nameForm.valid"   (click)="hacerTransaccion()" class="button is-primary">  Realizar trasferencia de predio </button>
+    </p>
+    
+  </div>
+</form>
+</div>

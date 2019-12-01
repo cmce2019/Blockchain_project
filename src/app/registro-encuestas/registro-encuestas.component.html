@@ -1,0 +1,22 @@
+  <form [formGroup]="myForm" (submit)="onSubmit(myForm.value)">
+    <div class="form-group">
+      <label for="exampleInp">TITULO DE LA ENCUESTA</label>
+      <input type="text" class="form-control" formControlName="nombre" id="titulo_encuesta"  placeholder="Titulo de la encuesta">
+    </div>
+
+    <label for="exampleInputEmail1">PREGUNTAS DE LA ENCUESTA</label>
+    <div class="form-group">
+    <div class="btn-group-vertical align-items-center">
+      <button type="button" class="btn btn-success" (click)="addInput()">AÑADIR UNA PREGUNTA</button>
+    </div>
+  </div>
+<div class="form-group">
+    <div formArrayName="preguntas">
+    <div *ngFor="let item of getInput.controls, let pointIndex=index" [formGroupName]="pointIndex">
+      <input formControlName="pregunta" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese la pregunta"> <a class="btn btn-link" (click)="removeInput(pointIndex)">Eliminar pregunta</a>
+    </div>
+    
+  </div>
+  </div> 
+    <button type="submit" class="btn btn-primary" >REGISTRAR LA ENCUESTA</button>
+  </form>

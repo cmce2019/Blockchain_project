@@ -1,0 +1,54 @@
+<mat-toolbar color="primary">CARLOS MAURICIO CORDOBA ENDO    </mat-toolbar>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" [routerLink]="['home']">Blockchain 3ER corte </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="actividad" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            ACTIVIDAD 
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" [routerLink]="['registro-encuestas']">Registro de encuestas</a>
+            <a class="dropdown-item" [routerLink]="['llenado-encuestas']">Captura de información</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" [routerLink]="['ejercicio']">Información acerca de las encuestas</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="proyecto" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              PROYECTO
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" [routerLink]="['registro-predio']">Registro de predio</a>
+              <a class="dropdown-item" [routerLink]="['registro-propietario']">Registro de propietario</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" [routerLink]="['transaccion-predio']">Transferencia de predio</a>
+            </div>
+          </li>
+
+      </ul>
+    </div>
+  </nav>
+  <div class="container main-container">
+<router-outlet></router-outlet>
+</div>
+
+<!--    EJERCICIO EN CLASE
+    <app-ejercicio></app-ejercicio>
+
+   ESTACIONES INTELIGENTES
+
+<app-registro-vehiculo> </app-registro-vehiculo>
+ <app-registro-estacion></app-registro-estacion>   
+ <app-transaccion></app-transaccion>
+
+    PROYECTO
+
+<app-registro-propietario></app-registro-propietario>
+<app-registro-predio></app-registro-predio>
+<app-transaccion-predio></app-transaccion-predio>--> 

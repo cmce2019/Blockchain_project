@@ -1,0 +1,26 @@
+<div class="container">
+    <h1 class="title is-4 is-info help">{{status}}</h1>
+  <form #nameForm="ngForm">
+    <div class="field">
+      <p> Registro de vehiculo</p>
+      <label class="label">Saldo</label>
+      <p class="control">
+        <input [(ngModel)]="saldo"  class="input"  type="number" placeholder="Saldo"  name="Saldo"  required  #nameChangeModel="ngModel">
+      </p>
+    
+      <div *ngIf="nameChangeModel.errors && (nameChangeModel.dirty || nameChangeModel.touched)"
+           class="help is-danger">
+          <p [hidden]="!nameChangeModel.errors.required">
+            This field is required
+          </p>
+      </div>
+    </div>
+    
+    <div class="field is-grouped">
+      <p class="control">
+        <button    [disabled]="!nameForm.valid"  (click)="registrarVehiculo()" class="button is-primary">  Registrar saldo de vehiculo </button>
+      </p>
+    </div>
+  </form>
+  </div>
+  
