@@ -2,13 +2,14 @@
   <h2>Llenado de encuestas</h2>
 
   <div class="list-group">
+    
     <a (click)="getForm()" class="list-group-item"   (click)="show = !show">{{nombre}}</a>
   </div>
 </div>
 <div class="container" *ngIf="show">
 <form [formGroup]="myForm" (submit)="onSubmit()">
- <!-- <input formControlName="pregunta" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese el nombre del encuestante"> 
-  <input  formControlName="pregunta" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese el documento del encuestado"> -->   
+<input formControlName="pregunta" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese el nombre del encuestante"> 
+<input  formControlName="pregunta" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese el documento del encuestado"> -->   
 <div class="form-group">
   <div formArrayName="preguntas">
   <div *ngFor="let item of array, let pointIndex=index" [formGroupName]="pointIndex">

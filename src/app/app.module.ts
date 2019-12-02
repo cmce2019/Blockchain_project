@@ -24,6 +24,7 @@ import { RegistroPropietarioComponent } from './registro-propietario/registro-pr
 import { TransaccionPredioComponent } from './transaccion-predio/transaccion-predio.component';
 import { RegistroEncuestasComponent } from './registro-encuestas/registro-encuestas.component';
 import { LlenadoEncuestasComponent } from './llenado-encuestas/llenado-encuestas.component';
+import { VerEncuestasComponent } from './ver-encuestas/ver-encuestas.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { LlenadoEncuestasComponent } from './llenado-encuestas/llenado-encuestas
     TransaccionPredioComponent,
     RegistroEncuestasComponent,
     LlenadoEncuestasComponent,
+    VerEncuestasComponent,
   ],
   imports: [
     ReactiveFormsModule,

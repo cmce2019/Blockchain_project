@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import {Web3Service} from '../util/web3.service';
 import { MatSnackBar } from '@angular/material';
-import { IndexInfo } from 'typescript';
 declare let require: any;
 const course_contract = require('../../../build/contracts/Encuestas.json');
 
