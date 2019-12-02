@@ -11,7 +11,8 @@ const course_contract = require('../../../build/contracts/Encuestas.json');
   styleUrls: ['./llenado-encuestas.component.css']
 })
 export class LlenadoEncuestasComponent implements OnInit {
-  nombre: String;
+  nombre=String;
+  arraynombres: String[];
   name: String;
   seleccionado: String;
   index: number;
@@ -24,6 +25,7 @@ export class LlenadoEncuestasComponent implements OnInit {
   myForm: FormGroup;
   selectedValue: string;
   respuestas: string;
+  ind:number;
   options = [
     {
       value: true,
@@ -40,17 +42,20 @@ export class LlenadoEncuestasComponent implements OnInit {
   }
 
   ngOnInit() {
+    const a = (JSON.parse(localStorage.getItem('titulo'))).toString();
+    this.arraynombres=a.split(",");
     this.array_preguntas=[];
-    this.nombre=localStorage.getItem('titulo');
+  
     this.watchAccount(); 	
     this.web3Service.artifactsToContract(course_contract)
       .then((course_contractAbstraction) => {
         this.courseContract = course_contractAbstraction;
         this.courseContract.deployed().then(deployed => {
-          console.log(deployed);
+          console.log("estaaa "+deployed);
         });
 
       });
+      
   }
   constructor(private fb: FormBuilder,private web3Service: Web3Service, private matSnackBar: MatSnackBar) { }
   watchAccount() {
@@ -63,9 +68,10 @@ export class LlenadoEncuestasComponent implements OnInit {
     this.matSnackBar.open(status, null, {duration: 3000});
   }
 
-  async getForm(){
+  async getForm(index: number){
+    this.ind=index;
     const deployedCourseContract = await this.courseContract.deployed();
-    const info = await deployedCourseContract.getPreguntas.call(this.nombre);
+    const info = await deployedCourseContract.getPreguntas.call(this.arraynombres[index]);
     this.myForm=this.fb.group({
       preguntas: this.fb.array([this.fb.group({})]) 
     });
@@ -92,13 +98,15 @@ export class LlenadoEncuestasComponent implements OnInit {
     try {
       this.respuestas="";
       for(let item of this.array_preguntas){
-        this.respuestas+=item+"-"+this.nombre +",";
+        this.respuestas+=item+"-"+this.arraynombres[this.ind] +",";
       }
      this.respuestas=(this.respuestas).slice(0,-1); 
      const deployedCourseContract = await this.courseContract.deployed();
-     const courseContractTransaction = await deployedCourseContract.setRespuesta.sendTransaction(this.nombre,this.respuestas,{from: this.account});
-     //const info = await deployedCourseContract.getRespuesta.call(this.nombre);
-      if (!courseContractTransaction) {
+     const courseContractTransaction = await deployedCourseContract.setRespuesta.sendTransaction(this.arraynombres[this.ind],this.respuestas,{from: this.account});
+     const info = await deployedCourseContract.getNumRespuestas.call(this.arraynombres[this.ind]);
+     
+     alert(info);
+        if (!courseContractTransaction) {
         this.setStatus('Transaction Fallida!');
       } else {
         this.setStatus('Transaction Completada! ');

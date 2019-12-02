@@ -1,9 +1,8 @@
 <div class="container">
   <h2>Llenado de encuestas</h2>
 
-  <div class="list-group">
-    
-    <a (click)="getForm()" class="list-group-item"   (click)="show = !show">{{nombre}}</a>
+  <div class="list-group"> 
+    <a *ngFor="let a of arraynombres, let pointIndex=index" (click)="getForm(pointIndex)" class="list-group-item"   (click)="show = !show">{{arraynombres[pointIndex]}}</a>
   </div>
 </div>
 <div class="container" *ngIf="show">

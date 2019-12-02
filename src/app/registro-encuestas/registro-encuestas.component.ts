@@ -17,6 +17,7 @@ export class RegistroEncuestasComponent implements OnInit {
   account: string;
   preguntas: string;
   accounts: string[];
+  encuestas=[];
   courseContract: any;
   myForm: FormGroup;
   formValue: any;
@@ -47,8 +48,9 @@ export class RegistroEncuestasComponent implements OnInit {
      const deployedCourseContract = await this.courseContract.deployed();
      const courseContractTransaction = await deployedCourseContract.registrarEncuesta.sendTransaction(formvalue.nombre,this.preguntas,{from: this.account});
      // const info = await deployedCourseContract.getPreguntas.call(formvalue.nombre);
-     localStorage.setItem('titulo',formvalue.nombre);
-
+     this.encuestas.push(formvalue.nombre);
+     localStorage.setItem('titulo',JSON.stringify(this.encuestas));
+      
       if (!courseContractTransaction) {
         this.setStatus('Transaction Fallida!');
       } else {
