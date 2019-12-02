@@ -2,20 +2,24 @@
   <h2>Llenado de encuestas</h2>
 
   <div class="list-group">
-    <a (click)="getForm()" class="list-group-item" >{{nombre}}</a>
+    <a (click)="getForm()" class="list-group-item"   (click)="show = !show">{{nombre}}</a>
   </div>
 </div>
-<div class="container">
-<form [formGroup]="myForm" (submit)="onSubmit(myForm.value)">
-
+<div class="container" *ngIf="show">
+<form [formGroup]="myForm" (submit)="onSubmit()">
+ <!-- <input formControlName="pregunta" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese el nombre del encuestante"> 
+  <input  formControlName="pregunta" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese el documento del encuestado"> -->   
 <div class="form-group">
   <div formArrayName="preguntas">
   <div *ngFor="let item of array, let pointIndex=index" [formGroupName]="pointIndex">
     <input readonly formControlName="pregunta" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese la pregunta">   
-    <select [(ngModel)]="seleccionado" (change)="registro(pointIndex)">
+    <select [(ngModel)]="seleccionado" #t class="form-control" (change)="registro(pointIndex,t.value)">
         <option *ngFor="let option of options" [value]="option.value">{{option.name}}</option>
     </select>
   </div>
-  
+
 </div>
+</div>
+<button type="submit" class="btn btn-primary" >REGISTRAR LA RESPUESTA</button>
+</form>
 </div>

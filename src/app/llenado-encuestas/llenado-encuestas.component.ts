@@ -20,27 +20,28 @@ export class LlenadoEncuestasComponent implements OnInit {
   preguntas: string;
   accounts: string[];
   array: string[];
-  array_preguntas: string[];
+  array_preguntas: boolean[];
   courseContract: any;
   myForm: FormGroup;
-  selectedValue;
+  selectedValue: string;
+  respuestas: string;
   options = [
     {
-      value: 1,
+      value: true,
       name : "Si"
     },
     {
-      value: 2,
+      value: false,
       name : "No"
     }
   ];
-  registro(index_:number){
-   this.array_preguntas[index_]=this.options.toString();
-   this.setStatus("sdsa" +this.array_preguntas);
+  registro(index_:number, id: boolean){
+    this.array_preguntas[index_]=id;
+   alert (this.array_preguntas[index_]);
   }
 
   ngOnInit() {
-    this.selectedValue="hola";
+    this.array_preguntas=[];
     this.nombre=localStorage.getItem('titulo');
     this.watchAccount(); 	
     this.web3Service.artifactsToContract(course_contract)
@@ -82,6 +83,33 @@ export class LlenadoEncuestasComponent implements OnInit {
       this.index++;
     }  
     }
+  }
+
+  async onSubmit(){
+    if (!this.courseContract) {
+      this.setStatus('Metacoin is not loaded, unable to send transaction');
+      return;
+    }
+    try {
+      this.respuestas="";
+      for(let item of this.array_preguntas){
+        this.respuestas+=item+"-"+this.nombre +",";
+      }
+     this.respuestas=(this.respuestas).slice(0,-1); 
+     const deployedCourseContract = await this.courseContract.deployed();
+     const courseContractTransaction = await deployedCourseContract.setRespuesta.sendTransaction(this.nombre,this.respuestas,{from: this.account});
+     //const info = await deployedCourseContract.getRespuesta.call(this.nombre);
+      if (!courseContractTransaction) {
+        this.setStatus('Transaction Fallida!');
+      } else {
+        this.setStatus('Transaction Completada! ');
+      }
+    } catch (e) {
+      console.log(e);
+      this.setStatus('Error Realizando el registro de la encuesta; Ver Log.');
+    }
+    
+
   }
 
 }
